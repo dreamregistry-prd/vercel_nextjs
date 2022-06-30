@@ -1,5 +1,5 @@
 terraform {
-  backend "s3" {}
+#  backend "s3" {}
 
   required_providers {
     vercel = {
@@ -28,10 +28,11 @@ resource "vercel_project" "app" {
 resource "vercel_deployment" "app" {
   project_id  = vercel_project.app.id
   files       = data.vercel_project_directory.app.files
+  path_prefix = var.dream_project_dir
   production  = true
   environment = var.dream_env
 }
 
 output "URL" {
-  value = vercel_deployment.app.url
+  value = "https://${vercel_deployment.app.url}"
 }
