@@ -33,6 +33,15 @@ resource "vercel_deployment" "app" {
   environment = var.dream_env
 }
 
-output "URL" {
+resource "vercel_project_domain" "domain" {
+  project_id = vercel_project.app.id
+  domain     = var.app_host
+}
+
+output "DEPLOYMENT_URL" {
   value = "https://${vercel_deployment.app.url}"
+}
+
+output "PROJECT_URL" {
+  value = vercel_project_domain.domain.domain
 }
