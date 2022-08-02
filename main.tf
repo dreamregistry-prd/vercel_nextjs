@@ -35,7 +35,7 @@ resource "vercel_deployment" "app" {
 
 resource "vercel_project_domain" "domain" {
   project_id = vercel_project.app.id
-  domain     = var.app_host
+  domain     = split("//", var.app_host)[1]
 }
 
 output "DEPLOYMENT_URL" {
