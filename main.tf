@@ -43,5 +43,5 @@ output "DEPLOYMENT_URL" {
 }
 
 output "PROJECT_URL" {
-  value = vercel_project_domain.domain.domain
+  value = var.app_host
 }
